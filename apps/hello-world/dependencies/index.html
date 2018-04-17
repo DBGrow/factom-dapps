@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello World</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--You can get static files from your app if you know it's id:-->
+    <!--<img id="pic" src="/app/<app_id>/static/img/sheep.jpg">-->
+    <!--It just depends on how much you want to depend on your hosting!-->
+
+    <!--Of course, were in a browser so you can also use
+     external deps if you dont want to package them with your app!:-->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link href='https://fonts.googleapis.com/css?family=Raleway:300' rel='stylesheet' type='text/css'>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://ricostacruz.com/jquery.transit/jquery.transit.min.js"></script>
+</head>
+<body>
+
+<h1 class="middle">
+    The Factom DApp <strong>LIVES</strong>
+    <br>
+    <a class="icon" href="https://github.com/drkatz/factom-dapps" target="_blank" style="z-index: 9999999"><i
+            class="fa fa-github"
+            style="font-size:48px;"></i></a>
+    <br>
+    <a href="/" target="_blank" style="color: white; margin-top: 16px; font-size: 24px">More DApps</a>
+</h1>
+
+<h2 class="bottomright">Background <a target="_blank" href="https://codepen.io/tonx/pen/dteFo">Pen</a> by Enrico Toniato
+</h2>
+
+<script>
+    var background = {}
+
+    background.initializr = function () {
+
+        var $this = this;
+
+
+        //option
+        $this.id = "background_css3";
+        $this.style = {bubbles_color: "#fff", stroke_width: 0, stroke_color: "black"};
+        $this.bubbles_number = 30;
+        $this.speed = [1500, 8000]; //milliseconds
+        $this.max_bubbles_height = $this.height;
+        $this.shape = false // 1 : circle | 2 : triangle | 3 : rect | false :random
+
+        if ($("#" + $this.id).lenght > 0) {
+            $("#" + $this.id).remove();
+        }
+        $this.object = $("<div style='z-inde:-1;margin:0;padding:0; overflow:hidden;position:absolute;bottom:0' id='" + $this.id + "'> </div>'").appendTo("body");
+
+        $this.ww = $(window).width()
+        $this.wh = $(window).height()
+        $this.width = $this.object.width($this.ww);
+        $this.height = $this.object.height($this.wh);
+
+
+        $("body").prepend("<style>.shape_background {transform-origin:center; width:80px; height:80px; background: " + $this.style.bubbles_color + "; position: absolute}</style>");
+
+
+        for (i = 0; i < $this.bubbles_number; i++) {
+            $this.generate_bubbles()
+        }
+
+    }
+
+
+    background.generate_bubbles = function () {
+        var $this = this;
+        var base = $("<div class='shape_background'></div>");
+        var shape_type = $this.shape ? $this.shape : Math.floor($this.rn(1, 3));
+        if (shape_type == 1) {
+            var bolla = base.css({borderRadius: "50%"})
+        } else if (shape_type == 2) {
+            var bolla = base.css({
+                width: 0,
+                height: 0,
+                "border-style": "solid",
+                "border-width": "0 40px 69.3px 40px",
+                "border-color": "transparent transparent " + $this.style.bubbles_color + " transparent",
+                background: "transparent"
+            });
+        } else {
+            var bolla = base;
+        }
+        var rn_size = $this.rn(.8, 1.2);
+        bolla.css({
+            "transform": "scale(" + rn_size + ") rotate(" + $this.rn(-360, 360) + "deg)",
+            top: $this.wh + 100,
+            left: $this.rn(-60, $this.ww + 60)
+        });
+        bolla.appendTo($this.object);
+        bolla.transit({
+            top: $this.rn($this.wh / 2, $this.wh / 2 - 60),
+            "transform": "scale(" + rn_size + ") rotate(" + $this.rn(-360, 360) + "deg)",
+            opacity: 0
+        }, $this.rn($this.speed[0], $this.speed[1]), function () {
+            $(this).remove();
+            $this.generate_bubbles();
+        })
+
+    }
+
+
+    background.rn = function (from, to, arr) {
+        if (arr) {
+            return Math.random() * (to - from + 1) + from;
+        } else {
+            return Math.floor(Math.random() * (to - from + 1) + from);
+        }
+    }
+    background.initializr()
+</script>
+<style type="text/css">
+    body, html {
+        background: #007bff;
+        height: 100%;
+        margin: 0px;
+    }
+
+    .icon {
+        color: ghostwhite;
+    }
+
+    .icon:hover {
+        color: aqua;
+    }
+
+    .bottomright {
+        position: fixed;
+        text-align: center;
+        bottom: 0px;
+        right: 20px;
+        color: white;
+        font-size: 16px;
+        font-family: Roboto;
+        font-weight: normal;
+        z-index: 999;
+    }
+
+    .middle {
+        height: auto;
+        display: table;
+        width: 80%;
+        text-align: center;
+        overflow: auto;
+        margin: auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        color: white;
+        font-family: 'Raleway', sans-serif;
+        font-weight: 300;
+        font-size: 3em;
+        z-index: 999;
+    }
+
+    h2 span {
+        font-size: 15px;
+        font-weight: lighter;
+    }
+
+</style>
+
+</body>
+</html>

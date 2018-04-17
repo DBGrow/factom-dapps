@@ -1,0 +1,12 @@
+{
+  "ec_address": "",
+
+  "factomd_ip": "",
+  "factomd_port": "",
+
+  "walletd_ip": "",
+  "walletd_port": "",
+
+  "publisher_chain_id":"",
+  "publisher_private_key":""
+}

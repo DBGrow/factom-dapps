@@ -1,0 +1,9 @@
+{
+  "app_id": "hello-world",
+  "version": "0.0.0",
+  "publisher_chain": "",
+  "publisher_public_key": "the public key of the publisher of this app",
+  "exclude_dependency_paths": [
+    "dependencies/static/*"
+  ]
+}

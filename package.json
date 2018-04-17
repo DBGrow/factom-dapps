@@ -1,0 +1,18 @@
+{
+  "name": "factom-dapp",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "vm2": "3.5.2",
+    "express": "4.16.3",
+    "node-dir": "0.1.17",
+    "factom": "0.1.2",
+    "zip-folder": "1.0.0"
+  }
+}
