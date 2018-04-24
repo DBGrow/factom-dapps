@@ -60,4 +60,7 @@ typings/
 .idea
 
 out
+in
+external_apps
+
 

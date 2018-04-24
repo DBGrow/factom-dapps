@@ -13,6 +13,11 @@
     "express": "4.16.3",
     "node-dir": "0.1.17",
     "factom": "0.1.2",
-    "zip-folder": "1.0.0"
+    "factom-storage": "0.1.1",
+    "archiver": "2.1.1",
+    "unzip": "0.1.11",
+    "node-rsa": "0.4.2",
+    "node-uuid": "1.4.8",
+    "detect-character-encoding": "0.5.1"
   }
 }

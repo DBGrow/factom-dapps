@@ -116,3 +116,8 @@ module.exports = {
 };
 ```
 
+
+
+### Publishing and Downloading apps
+
+You can publish your app to the Factom blockchain for anyone to use! See the functions `downloadApp` and `publishApp` in `index.js` for test code

@@ -6,6 +6,11 @@ const {NodeVM, VMScript} = require('vm2');
 var loaded_apps = {};
 var express_app;
 
+var {Entry} = require('factom/src/entry');
+var {Chain} = require('factom/src/chain');
+
+var {FactomCli} = require('factom');
+
 function init(app) {
     express_app = app;
 
@@ -211,8 +216,20 @@ function runApp(app_id, callback) {
     var index_script_string = app.index_string;
 
     var sandbox = {
-        dependencies: app.dependencies,
-        factom: require('factom') //give the app a fresh instance of the factom client
+        dependencies: app.dependencies, //file deps
+        factom_cli: new FactomCli({
+            /*factomd: {
+                host: '52.202.51.229',
+                port: 8088
+            },
+            walletd: {
+                host: '52.202.51.229',
+                port: 8089
+            }*/
+        }), //give the app a fresh instance of the factom-cli
+        Entry: Entry,
+        Chain: Chain,
+        factom_salt: require('../../index').getFactomSalt()
     };
 
     let vm = new NodeVM({
@@ -220,14 +237,14 @@ function runApp(app_id, callback) {
         require: {
             context: "sandbox",
             external: false,
-            // builtin: ["fs"],
+            builtin: ["crypto"],
         }
     });
 
     //then run it!
     try {
         var index = vm.run(index_script_string, app.path);
-        loaded_apps[app_id].index = index
+        loaded_apps[app_id].index = index;
         console.log('running app ' + app_id)
     } catch (err) {
         console.error('Failed to execute script.', err);

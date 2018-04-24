@@ -1,12 +1,13 @@
 {
+  "factom_salt": "7523hn4j5kuki4",
   "ec_address": "",
-
   "factomd_ip": "",
   "factomd_port": "",
-
   "walletd_ip": "",
   "walletd_port": "",
-
-  "publisher_chain_id":"",
-  "publisher_private_key":""
+  "publisher_chain_id": "",
+  "publisher_private_key": "",
+  "run_on_startup": [
+    "hello-world"
+  ]
 }

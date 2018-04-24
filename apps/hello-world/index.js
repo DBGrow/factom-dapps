@@ -19,16 +19,7 @@ for (var depname in dependencies) {
 
 //you can use the 'factom' npm library just as if required
 //under variable 'factom' like so:
-var cli = new factom.FactomCli({
-    /*factomd: {
-        host: '52.202.51.229',
-        port: 8088
-    },
-    walletd: {
-        host: '52.202.51.229',
-        port: 8089
-    }*/
-});
+var cli = factom_cli;
 
 //lets get an entry for example
 /*cli.getEntry('69de95f3ecf34c7cf3e7588c0fbe08a9fd64155d54a1559960295fa9a232f380')
